@@ -1,31 +1,30 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
 
-// Connect to MongoDB (local or Atlas)
-mongoose.connect("mongodb://localhost:27017/portfolioDB")
-  .then(() => console.log("✅ Connected to MongoDB"))
-  .catch(err => console.error("❌ MongoDB connection error:", err));
+// Connect to MongoDB Atlas
+mongoose.connect("mongodb+srv://stephanie:steph123@personalprofile.s61jvxj.mongodb.net/personalprofile?retryWrites=true&w=majority")
+  .then(() => console.log("✓ Connected to MongoDB Atlas"))
+  .catch(err => console.error("✗ MongoDB connection error:", err));
 
-// Define schema
+// Schema
 const messageSchema = new mongoose.Schema({
   name: String,
   email: String,
   message: String,
   date: { type: Date, default: Date.now }
 });
-
-// Create model
 const Message = mongoose.model("Message", messageSchema);
 
-// Route to save messages
+// Route
 app.post("/contact", async (req, res) => {
   try {
     const newMessage = new Message(req.body);
