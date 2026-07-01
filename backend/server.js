@@ -18,6 +18,7 @@ app.use(express.json());
 
 console.log("MONGO_URI:", process.env.MONGO_URI);
 
+
 // Connect to MongoDB Atlas
 mongoose.connect(process.env.MONGO_URI, {
   serverSelectionTimeoutMS: 10000, // fail fast instead of hanging
