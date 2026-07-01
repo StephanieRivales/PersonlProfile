@@ -8,6 +8,28 @@
 </head>
 <body>
 
+<div id="customAlert" class="alert hidden">
+<span class="alert-icon"></span>
+<span id="alertMessage" class="alert-message"></span>
+<button class="alert-close" onclick="closeAlert()">&times;</button>
+</div>
+
+<div id="customAlert" class="alert hidden">
+  <span class="alert-icon"></span>
+  <span id="alertMessage" class="alert-message"></span>
+  <button class="alert-close" onclick="closeAlert()">&times;</button>
+</div>
+
+<div id="confirmModal" class="confirm-overlay hidden">
+  <div class="confirm-box">
+    <p id="confirmText">Are you sure you want to delete this message?</p>
+    <div class="confirm-actions">
+      <button id="confirmCancel" class="confirm-btn cancel">Cancel</button>
+      <button id="confirmOk" class="confirm-btn ok">Delete</button>
+    </div>
+  </div>
+</div>
+
 <header>
   <div class="profile-header">
     <img src="image.jfif" alt="Stephanie Rivales" class="profile-photo">
