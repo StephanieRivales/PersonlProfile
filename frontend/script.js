@@ -227,4 +227,3 @@ navLinks.forEach(link => {
     });
 
 });
-

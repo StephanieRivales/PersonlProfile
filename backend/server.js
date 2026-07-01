@@ -6,14 +6,13 @@ console.log("DNS:", dns.getServers());
 
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 console.log("MONGO_URI:", process.env.MONGO_URI);
 
@@ -21,7 +20,8 @@ console.log("MONGO_URI:", process.env.MONGO_URI);
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✓ Connected to MongoDB Atlas"))
   .catch(err => console.error("✗ MongoDB connection error:", err));
-// Schema
+
+/* -------------------- MESSAGE FEATURE -------------------- */
 const messageSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -30,7 +30,7 @@ const messageSchema = new mongoose.Schema({
 });
 const Message = mongoose.model("Message", messageSchema);
 
-// Route
+// Save message
 app.post("/contact", async (req, res) => {
   try {
     const newMessage = new Message(req.body);
@@ -41,6 +41,17 @@ app.post("/contact", async (req, res) => {
   }
 });
 
+// Get all messages
+app.get("/messages", async (req, res) => {
+  try {
+    const messages = await Message.find().sort({ date: -1 });
+    res.json(messages);
+  } catch (err) {
+    res.status(500).json({ success: false, msg: "Error fetching messages." });
+  }
+});
+
+/* -------------------- SERVER -------------------- */
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
