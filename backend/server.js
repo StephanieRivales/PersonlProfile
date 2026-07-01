@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: "https://personl-profile.vercel.app/"
+  origin: "https://personl-profile.vercel.app"
 }));
 app.use(express.json());
 
