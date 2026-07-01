@@ -1,4 +1,9 @@
 require("dotenv").config();
+
+const dns = require("dns");
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+console.log("DNS:", dns.getServers());
+
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -10,11 +15,12 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
+console.log("MONGO_URI:", process.env.MONGO_URI);
+
 // Connect to MongoDB Atlas
-mongoose.connect("mongodb+srv://stephanie:steph123@personalprofile.s61jvxj.mongodb.net/personalprofile?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✓ Connected to MongoDB Atlas"))
   .catch(err => console.error("✗ MongoDB connection error:", err));
-
 // Schema
 const messageSchema = new mongoose.Schema({
   name: String,

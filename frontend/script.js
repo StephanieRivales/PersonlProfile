@@ -1,40 +1,230 @@
+const API = "http://localhost:3000";
+
+// ==============================
+// HIRE ME
+// ==============================
+
 function hireMe() {
-  alert("Thank you for considering me! I look forward to connecting.");
+    window.location.href =
+        "mailto:yurianeyuuu@gmail.com?subject=Job Opportunity";
 }
 
-function toggleCertificates() {
-  const certs = document.getElementById("certificates");
-  certs.classList.toggle("hidden");
-}
+// ==============================
+// DARK MODE
+// ==============================
 
 function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
+
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+
+        localStorage.setItem("theme", "dark");
+
+    } else {
+
+        localStorage.setItem("theme", "light");
+
+    }
+
 }
 
-function downloadResume() {
-  const link = document.createElement("a");
-  link.href = "Stephanie_Rivales_Resume.pdf"; // replace with your actual resume file
-  link.download = "Stephanie_Rivales_Resume.pdf";
-  link.click();
-}
+// Load saved theme
+window.addEventListener("load", () => {
 
-// Handle message form submission
-document.getElementById("messageForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+    if (localStorage.getItem("theme") === "dark") {
 
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
+        document.body.classList.add("dark-mode");
 
-  fetch("http://localhost:3000/contact", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, email, message })
-  })
-  .then(res => res.json())
-  .then(data => {
-    alert(data.msg);
-    document.getElementById("messageForm").reset();
-  })
-  .catch(err => alert("Error sending message: " + err));
+    }
+
+    loadMessages();
+
 });
+
+// ==============================
+// SEND MESSAGE
+// ==============================
+
+const messageForm = document.getElementById("messageForm");
+
+if (messageForm) {
+
+    messageForm.addEventListener("submit", async function (e) {
+
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+
+        const email = document.getElementById("email").value.trim();
+
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !email || !message) {
+
+            alert("Please complete all fields.");
+
+            return;
+
+        }
+
+        try {
+
+            const response = await fetch(`${API}/contact`, {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    name,
+                    email,
+                    message
+                })
+
+            });
+
+            const data = await response.json();
+
+            const result = document.getElementById("contactResponse");
+
+            result.innerHTML = data.msg;
+
+            result.style.color = data.success ? "green" : "red";
+
+            if (data.success) {
+
+                messageForm.reset();
+
+                loadMessages();
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            alert("Unable to connect to the server.");
+
+        }
+
+    });
+
+}
+
+// ==============================
+// LOAD MESSAGES
+// ==============================
+
+async function loadMessages() {
+
+    try {
+
+        const response = await fetch(`${API}/messages`);
+
+        const messages = await response.json();
+
+        const list = document.getElementById("messageList");
+
+        list.innerHTML = "";
+
+        if (messages.length === 0) {
+
+            list.innerHTML =
+                "<li>No messages yet.</li>";
+
+            return;
+
+        }
+
+        messages.forEach(message => {
+
+            const li = document.createElement("li");
+
+            const date = new Date(message.date);
+
+            li.innerHTML = `
+                <strong>👤 ${message.name}</strong>
+                <small>${message.email}</small>
+                <p>${message.message}</p>
+                <small>${date.toLocaleString()}</small>
+            `;
+
+            list.appendChild(li);
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+// ==============================
+// ACTIVE NAVIGATION
+// ==============================
+
+const sections = document.querySelectorAll("section");
+
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const sectionTop = section.offsetTop - 120;
+
+        if (window.scrollY >= sectionTop) {
+
+            current = section.getAttribute("id");
+
+        }
+
+    });
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === "#" + current) {
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+});
+
+// ==============================
+// SMOOTH SCROLL
+// ==============================
+
+navLinks.forEach(link => {
+
+    link.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        const target = document.querySelector(this.getAttribute("href"));
+
+        target.scrollIntoView({
+
+            behavior: "smooth"
+
+        });
+
+    });
+
+});
+

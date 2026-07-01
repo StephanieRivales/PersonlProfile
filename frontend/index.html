@@ -1,134 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stephanie Rivales - Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stephanie Rivales | Portfolio</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="profile-header">
-      <img src="image.jfif" alt="Profile Photo" class="profile-photo">
-      <div class="profile-info">
-        <h1>Stephanie E. Rivales</h1>
-        <p>Computer Science Student</p>
+
+<header>
+  <div class="profile-header">
+    <img src="image.jfif" alt="Stephanie Rivales" class="profile-photo">
+    <div class="profile-info">
+      <h1>Stephanie E. Rivales</h1>
+      <p>Computer Science Student</p>
+      <div class="header-buttons">
+        <button onclick="toggleDarkMode()">🌙 Dark Mode</button>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#languages">Languages</a>
-    <a href="#education">Education</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
-    <a href="#reference">Reference</a>
-  </nav>
+<nav>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#languages">Languages</a>
+  <a href="#education">Education</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-  <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
-  <button onclick="downloadResume()">Download Resume</button>
+<section id="about" class="card">
+<h2>About Me</h2>
+<p>I am a Computer Science student who loves solving problems and learning how technology works. I am a hardworking and organized person looking to start my career in a professional team. My goal is to use what I've learned in school to help your company succeed while I continue to grow my technical skills.</p>
+</section>
 
-  <section id="about" class="card">
-    <h2>About Me</h2>
-    <p>I am a Computer Science student who loves solving problems and learning how technology works. I am a hardworking and organized person looking to start my career in a professional team. My goal is to use what I've learned in school to help your company succeed while I continue to grow my technical skills.</p>
-  </section>
+<section id="skills" class="card">
+<h2>Skills</h2>
+<div class="skills">
+<span>Web Development</span>
+<span>Time Management</span>
+<span>Project Management</span>
+<span>Graphic Design</span>
+</div>
+</section>
 
-  <section id="contact" class="card">
-    <h2>Contact Information</h2>
-    <p>📧 <a href="mailto:yurianeyuuu@gmail.com">yurianeyuuu@gmail.com</a></p>
-    <button onclick="hireMe()">Hire Me</button>
-
-    <!-- Message Form -->
-    <h3>Send me a message</h3>
-    <form id="messageForm">
-      <label for="name">Your Name:</label><br>
-      <input type="text" id="name" required><br><br>
-
-      <label for="email">Your Email:</label><br>
-      <input type="email" id="email" required><br><br>
-
-      <label for="message">Message:</label><br>
-      <textarea id="message" rows="4" required></textarea><br><br>
-
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
-
-  <section id="skills" class="card">
-    <h2>Skills</h2>
-    <div class="skills">
-      <span>Web Development</span>
-      <span>Time Management</span>
-      <span>Project Management</span>
-      <span>Graphic Design</span>
+<section id="projects" class="card">
+    <h2>Projects</h2>
+    <div class="project-card">
+        <h3>My Portfolio Project - WHAT SAVED MY LIFE</h3>
+        <p><strong>Technologies:</strong> HTML, CSS, JavaScript, Node.js, Express.js, MongoDB, React</p>
+        <a href="https://thefolio-project.vercel.app/" target="_blank" class="view-btn">
+            🔗 View Project
+        </a>
     </div>
-  </section>
+    <div id="projectList"></div>
+</section>
 
-  <section id="languages" class="card">
-    <h2>Languages</h2>
-    <ul>
-      <li>Tagalog</li>
-      <li>Iloko</li>
-      <li>English</li>
-    </ul>
-  </section>
+<section id="languages" class="card">
+<h2>Languages</h2>
+<ul>
+<li>Tagalog</li>
+<li>Iloko</li>
+<li>English</li>
+</ul>
+</section>
 
-  <section id="education" class="card">
-    <h2>Education</h2>
-    <p><strong>Don Mariano Marcos State University</strong><br>
-    Bachelor of Science in Computer Science<br>
-    Consolacion, Agoo, La Union<br>
-    2023 – Present</p>
+<section id="education" class="card">
+<h2>Education</h2>
+<ul>
+<li><strong>Don Mariano Marcos State University</strong><br>Bachelor of Science in Computer Science<br>Consolacion, Agoo, La Union<br>2023 – Present</li>
+<li><strong>President Elpidio Quirino National High School</strong><br>Junior High School<br>Senior High School – TVL-ICT<br>San Agustin East, Agoo, La Union<br>2017 – 2023</li>
+<li><strong>Sta. Rita Elementary School</strong><br>Sta. Rita Central, Agoo, La Union<br>2011 – 2017</li>
+</ul>
+</section>
 
-    <p><strong>President Elpidio Quirino National High School</strong><br>
-    Junior High School<br>
-    Senior High School – TVL-ICT<br>
-    San Agustin East, Agoo, La Union<br>
-    2017 – 2023</p>
+<section id="experience" class="card">
+<h2>Experience</h2>
+<ul>
+<li><strong>Work Immersion</strong> – Municipality of Agoo, Agriculture Department (2022)</li>
+<li><strong>NC II Training</strong> – South Ilocandia College of Arts & Technology (2023)</li>
+<li><strong>On-The Job Training</strong> – Municipality of Agoo, Accounting Office (2026)</li>
+</ul>
+</section>
 
-    <p><strong>Sta. Rita Elementary School</strong><br>
-    Sta. Rita Central, Agoo, La Union<br>
-    2011 – 2017</p>
-  </section>
+<section id="certificates" class="card">
+<h2>Certificates</h2>
+<p>Certificate for Data Science – Cisco Networking Academy (2025)</p>
+<p>Certificate for OJT Completion – Municipality of Agoo (2026)</p>
+<p>Certificate for Introduction to AI Fluency – ANTHRO\C (2026)</p>
+<div class="cert-gallery">
+<img src="ds.jpg" alt="Data Science">
+<img src="ojt.jpg" alt="OJT">
+<img src="fluency.jpg" alt="AI">
+</div>
+</section>
 
-  <section id="experience" class="card">
-    <h2>Experience & Certifications</h2>
-    <ul>
-      <li><strong>Work Immersion</strong> – Municipality of Agoo, Agriculture Department (2022)</li>
-      <li><strong>NC II Training</strong> – South Ilocandia College of Arts & Technology (2023)</li>
-      <li><strong>On-The Job Training</strong> – Municipality of Agoo, Accounting Office (2026)</li>  
-      <li><strong>Certificate for Data Science</strong> – Cisco Networking Academy (2025)</li>
-      <li><strong>Certificate for OJT Completion</strong> – Municipality of Agoo (2026)</li>
-      <li><strong>Certificate for Introduction to AI Fluency</strong> – ANTHRO\C (2026)</li>
-    </ul>
+<section id="contact" class="card">
+<h2>Contact</h2>
+<p>📧 <a href="mailto:yurianeyuuu@gmail.com">yurianeyuuu@gmail.com</a></p>
+<h3>Send Me a Message</h3>
+<form id="messageForm">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="email" id="email" placeholder="Your Email" required>
+<textarea id="message" placeholder="Write your message..." required></textarea>
+<button type="submit">Send Message</button>
+</form>
+<div id="contactResponse"></div>
+</section>
 
-    <!-- View Certificates Button -->
-    <button onclick="toggleCertificates()">View Certificates</button>
+<section id="messages" class="card">
+<h2>Messages</h2>
+<ul id="messageList"></ul>
+</section>
 
-    <!-- Certificates Section -->
-    <div id="certificates" class="hidden">
-      <h3>Certificates</h3>
-      <div class="cert-gallery">
-        <img src="ojt.jpg" alt="On-the-job training certificate">
-        <img src="ds.jpg" alt="Data Science Certificate">
-        <img src="fluency.jpg" alt="AI Fluency Certificate">
-      </div>
-    </div>
-  </section>
+<footer>
+<h3>Stephanie E. Rivales</h3>
+<p>Computer Science Student</p>
+<p>&copy; 2026 Stephanie E. Rivales | All Rights Reserved</p>
+</footer>
 
-  <section id="reference" class="card">
-    <h2>Reference</h2>
-    <p><strong>Prof. Darwin C. Llavore</strong><br>
-    Assistant Professor III<br>
-    📧 <a href="mailto:dllavore@dmmmsu.edu.ph">dllavore@dmmmsu.edu.ph</a></p>
-  </section>
-
-  <footer>
-    <p>&copy; 2026 Stephanie E. Rivales | Portfolio</p>
-  </footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
